@@ -1,21 +1,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Определяем ось времени
 t = np.linspace(0, 1, 1000)
+A = 1
+f = 5
+phi = [0, 90, 180, 270]
 
-# Определяем параметры гармонического колебания
-A = 5   # амплитуда колебания
-f = 5   # частота колебания
-ph = 0  # фаза колебания
+plt.figure(figsize=(10, 8))
+for i in range(len(phi)):
+    x = A * np.sin(2 * np.pi * f * t + phi[i] * np.pi / 180)
+    plt.subplot(2, 2, i + 1)
+    plt.plot(t, x)
+    plt.xlabel('Time (t)')
+    plt.ylabel('Amplitude (V)')
+    plt.title(r'$\Phi = {}^\circ$'.format(phi[i]))
+    plt.grid(True)
 
-# Записываем выражение для сигнала
-x = A * np.sin(2 * np.pi * f * t + ph)
-
-# Строим график колебания
-plt.plot(t, x)
-plt.xlabel('Time')
-plt.ylabel('Amplitude')
-plt.title(r'$A={}V, F={} Hz, \phi={}^\circ$'.format(A, f, ph))
-plt.grid(True)
+plt.tight_layout()
 plt.show()
